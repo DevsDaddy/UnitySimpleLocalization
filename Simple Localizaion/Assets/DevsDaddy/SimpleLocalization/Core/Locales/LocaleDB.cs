@@ -13,14 +13,4 @@ namespace DevsDaddy.SimpleLocalization.Core.Locales
         public LocaleTable DefaultLocale = null;
         public List<LocaleTable> AvailableLocales = new List<LocaleTable>();
     }
-
-    [System.Serializable]
-    [CreateAssetMenu(menuName = "Simple Localization/Create Localization Table", fileName = "LocalizationTable",
-        order = 2)]
-    public class LocaleTable : ScriptableObject
-    {
-        public SystemLanguage LocaleCode = SystemLanguage.English;
-        public string LocaleName = "English";
-        public List<LocaleString> Strings = new List<LocaleString>();
-    }
 }

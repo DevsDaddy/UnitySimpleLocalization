@@ -126,6 +126,7 @@ namespace DevsDaddy.SimpleLocalization.Core.Editor
             table.LocaleName = localeTableName;
             LocalizationWizzard.CheckFolders();
             string pathToConfig = $"{rootPath}Resources/Locales/{localeTableName}.asset";
+            EditorUtility.SetDirty(table);
             AssetDatabase.CreateAsset(table, pathToConfig);
             AssetDatabase.Refresh();
             AssetDatabase.OpenAsset(table);

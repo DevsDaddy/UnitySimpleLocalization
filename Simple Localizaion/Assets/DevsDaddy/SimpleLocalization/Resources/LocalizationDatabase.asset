@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a424ae94aaf4b5eb1666c6ea2e44ac0, type: 3}
   m_Name: LocalizationDatabase
   m_EditorClassIdentifier: 
-  ConfigRevision: 10
+  ConfigRevision: 1
   InitAtStartup: 1
   FallbackString: Locale {0} is not found in Table {1}
   DefaultLocale: {fileID: 11400000, guid: dd2d96f1624b7f54680281bd220b03e4, type: 2}

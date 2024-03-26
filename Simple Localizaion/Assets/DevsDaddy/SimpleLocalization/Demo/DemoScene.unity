@@ -270,6 +270,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GeneralCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 9175123069041426217, guid: 2f20106e049e9734da97381a004f4d02,
+        type: 3}
+      propertyPath: UseFallbackFromOriginal
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f20106e049e9734da97381a004f4d02, type: 3}
 --- !u!224 &448452224 stripped

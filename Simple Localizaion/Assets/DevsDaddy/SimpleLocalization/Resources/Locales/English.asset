@@ -9,9 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: e73c1e202d264929b51071ed07f327f7, type: 3}
   m_Name: English
-  m_EditorClassIdentifier: SimpleLocalization:DevsDaddy.SimpleLocalization.Core.Locales:LocaleTable
+  m_EditorClassIdentifier: 
   LocaleCode: 10
   LocaleName: English
-  Strings: []
+  Strings:
+  - Code: Welcome
+    Value: Welcome to the Simple Localization UI!
+  - Code: WelcomeDesc
+    Value: 'Thank you for installation of Simple Localization Toolkit!
+
+      Here
+      you can see a basic example of usage with components and fallbacks!'

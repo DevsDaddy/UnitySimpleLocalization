@@ -54,7 +54,10 @@ namespace DevsDaddy.SimpleLocalization.Core.Editor
             GUILayout.BeginHorizontal(styles.GetSubHeaderStyle(), GUILayout.ExpandWidth(true));
             GUILayout.Label("<b>Current Table:</b>", styles.GetRegularTextStyle(TextAnchor.MiddleLeft, new RectOffset(0,0,10,10)), GUILayout.Height(25));
             GUILayout.Space(10);
-            DrawObjectField(table, SetActiveTable);
+            DrawObjectField(table, tableNew => {
+                SetActiveTable(tableNew);
+                EditorUtility.SetDirty(table);
+            });
             GUILayout.Space(20);
             if (GUILayout.Button("Create New", styles.GetBasicButtonSyle(true), GUILayout.ExpandWidth(false))) {
                 CreateLocaleTableWindow dialogue = CreateLocaleTableWindow.CreateInstance<CreateLocaleTableWindow>();
@@ -72,11 +75,11 @@ namespace DevsDaddy.SimpleLocalization.Core.Editor
                 GUILayout.BeginHorizontal(styles.GetBodyAreaStyle(), GUILayout.ExpandWidth(true));
                 GUILayout.Label("<b>Locale Name:</b>", styles.GetRegularTextStyle(TextAnchor.MiddleLeft, new RectOffset(0,0,10,10)), GUILayout.Height(25));
                 GUILayout.Space(10);
-                DrawInputField(table.LocaleName, -1, newName => table.LocaleName = newName);
+                DrawInputField(table.LocaleName, -1, newName => { table.LocaleName = newName; EditorUtility.SetDirty(table); });
                 GUILayout.Space(20);
                 GUILayout.Label("<b>Locale Code:</b>", styles.GetRegularTextStyle(TextAnchor.MiddleLeft, new RectOffset(0,0,10,10)), GUILayout.Height(25));
                 GUILayout.Space(10);
-                DrawSelectorField(table.LocaleCode, newCode => table.LocaleCode = newCode);
+                DrawSelectorField(table.LocaleCode, newCode => { table.LocaleCode = newCode; EditorUtility.SetDirty(table); });
                 GUILayout.EndHorizontal();
             }
         }
@@ -129,6 +132,7 @@ namespace DevsDaddy.SimpleLocalization.Core.Editor
             GUILayout.Label("<b>Code:</b>", styles.GetRegularTextStyle(TextAnchor.MiddleLeft), GUILayout.Width(50));
             if (GUILayout.Button("Remove", styles.GetBasicButtonSyle(true), GUILayout.ExpandWidth(false))) {
                 table.Strings.RemoveAt(index);
+                EditorUtility.SetDirty(table);
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
             }
@@ -136,12 +140,14 @@ namespace DevsDaddy.SimpleLocalization.Core.Editor
             GUILayout.Space(10);
             DrawInputField(table.Strings[index].Code, 200, newValue => {
                 table.Strings[index].Code = newValue;
+                EditorUtility.SetDirty(table);
             });
             GUILayout.Space(20);
             GUILayout.Label("<b>Value:</b>", styles.GetRegularTextStyle(TextAnchor.MiddleLeft), GUILayout.Width(50));
             GUILayout.Space(10);
             DrawInputField(table.Strings[index].Value, -1, newValue => {
                 table.Strings[index].Value = newValue;
+                EditorUtility.SetDirty(table);
             });
 
             GUILayout.EndHorizontal();
@@ -159,6 +165,7 @@ namespace DevsDaddy.SimpleLocalization.Core.Editor
                         Code = "NewItem",
                         Value = ""
                     });
+                    EditorUtility.SetDirty(table);
                 }
                 if (GUILayout.Button("Save Table", styles.GetFooterButtonStyle(false)))
                     CompleteSetup();
@@ -200,11 +207,11 @@ namespace DevsDaddy.SimpleLocalization.Core.Editor
         /// On Click Save Table
         /// </summary>
         void CompleteSetup() {
+            EditorUtility.SetDirty(table);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             AssetDatabase.OpenAsset(table);
             OnComplete?.Invoke(table);
-            Close();
         }
         
         /// <summary>
